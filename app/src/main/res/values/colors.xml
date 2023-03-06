@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic Colors. -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF673AB7</color>
+    <color name="purple_600">#FF5E35B1</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <!-- Dark Mode Colors. -->
+    <color name="background_dark">#4A148C</color>
+    <color name="text_dark">#E6E6E6</color>
+    <color name="outline_dark">#1D005F</color>
+    <color name="header_accent_dark">@color/purple_500</color>
+        <!-- Tints. -->
+        <color name="colorAccent">#32000000</color>
+        <color name="img_tint_dark">#27000000</color>
+
+
+    <!-- Light Mode Colors. -->
+    <color name="background_light">@color/ic_pooper_light_background</color>
+    <color name="text_light">#C0000000</color>
+    <color name="outline_light">#EE80A6</color>
+    <color name="header_accent_light">#FEADCE</color>
+
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+    <!-- App name on header. -->
+    <string name="app_name">PoopTracker</string>
+
+    <!-- Option menu. -->
+    <string name="menuItem1">Clear All Data</string>
+    <string name="menuItem2">Set Reminder Time</string>
+
+    <!-- Title at top of screen. -->
+    <string name="mainTitleText">Have you pooped today?</string>
+
+    <!-- Time texts. (L->R) -->
+    <string name="timeTextMain1">Time since last poo:</string>
+        <string name="timeTextSub2">Shortest Time</string>
+        <string name="timeTextSub3">Longest Time</string>
+
+    <!-- Pooping statistics. -->
+    <string name="statText1">All Time</string>
+    <string name="statText2">This Week</string>
+    <string name="statText3">Today</string>
+
+    <!-- Button text. -->
+    <string name="buttonText1">I pooped!</string>
+
+
+    <!-- Notifications. -->
+    <string name="notifTitle">Have You Pooped Today?</string>
+    <string name="notifContent">Your toilet misses you…</string>
+
+</resources>

@@ -1,0 +1,31 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.PoopTracker" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/header_accent_dark</item>
+        <item name="colorPrimaryVariant">@color/background_dark</item>
+        <item name="colorOnPrimary">@color/text_dark</item>
+
+        <!-- Option menu tints. (does not change) -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/header_accent_dark</item>
+        <item name="titleTextColor">?attr/colorOnPrimary</item>
+
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
+        <item name="colorOutline">@color/outline_dark</item>
+
+        <!-- ImageView tints. -->
+        <item name="android:tintMode">src_atop</item>
+        <item name="android:tint">@color/img_tint_dark</item>
+    </style>
+
+    <!-- Option menu tints. (does not change) -->
+    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">?attr/colorPrimary</item>
+    </style>
+</resources>

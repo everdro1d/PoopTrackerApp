@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:text="@string/mainTitleText"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:translationY="-60dp"
+        tools:ignore="TextSizeCheck,VisualLintBounds">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="236dp"
+        android:translationY="-60dp"
+        app:srcCompat="@mipmap/ic_pooper_transparent_foreground"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/layoutSLTEXT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:translationY="-40dp">
+
+        <TextView
+            android:id="@+id/textShortestInterval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/timeTextSub2"
+            android:textAlignment="textStart"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textLongestInterval"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/timeTextSub3"
+            android:textAlignment="textEnd"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutSLInterval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:translationY="-30dp">
+
+        <TextView
+            android:id="@+id/textShort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textTime2Poo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:text="@string/timeTextMain1"
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:textSize="34sp"
+        android:translationY="-24dp"
+        tools:ignore="TextSizeCheck">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+
+        android:textAlignment="center"
+        android:textAppearance="@android:style/TextAppearance.Large"
+
+        android:textSize="56sp"
+        android:translationY="-15dp"
+        tools:ignore="SpeakableTextPresentCheck">
+
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/layoutATWD_TEXT"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textTotalAllTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/statText1"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTotalThisWeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/statText2"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTotalToday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="@string/statText3"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutATWD_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textTAT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTTW"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:textSize="25sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+
+        android:onClick="onClickAdd"
+        android:text="@string/buttonText1"
+        android:textSize="22sp"
+        app:strokeColor="?attr/colorOutline"
+        app:strokeWidth="2dp"
+        tools:ignore="PrivateResource,VisualLintButtonSize">
+
+    </Button>
+
+</LinearLayout>
