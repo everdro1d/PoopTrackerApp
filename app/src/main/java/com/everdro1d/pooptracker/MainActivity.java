@@ -410,6 +410,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void popupTimePicker() {
+        //TODO make material dialog to select hours
         TimePickerDialog.OnTimeSetListener onTimeSetListener
                 = (timePicker, selectedHour, selectedMinute) -> {
                     hour = selectedHour;
