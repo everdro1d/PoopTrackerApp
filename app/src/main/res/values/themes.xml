@@ -12,6 +12,7 @@
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/header_accent_light</item>
+        <item name="android:windowLightStatusBar">true</item>
         <item name="titleTextColor">?attr/colorOnPrimary</item>
 
         <!-- Customize your theme here. -->
