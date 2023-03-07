@@ -37,6 +37,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         mBuilder.setContentIntent(resultPendingIntent);
 
         mNotificationManager.notify(1, mBuilder.build());
-
     }
 }
