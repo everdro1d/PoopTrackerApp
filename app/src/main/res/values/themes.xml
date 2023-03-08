@@ -5,6 +5,10 @@
         <item name="colorPrimary">@color/header_accent_light</item>
         <item name="colorPrimaryVariant">@color/background_light</item>
         <item name="colorOnPrimary">@color/text_light</item>
+        <item name="colorOnSurface">?attr/colorPrimary</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="colorSurface">#181B20</item>
+        <item name="imageButtonStyle">@style/Widget.AppCompat.ImageButton</item>
 
         <!-- Option menu tints. (does not change) -->
         <item name="colorAccent">@color/colorAccent</item>
@@ -15,6 +19,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="titleTextColor">?attr/colorOnPrimary</item>
 
+
         <!-- Customize your theme here. -->
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:colorBackground">?attr/colorPrimaryVariant</item>
@@ -24,5 +29,10 @@
     <!-- Option menu tints. (does not change) -->
     <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">?attr/colorPrimary</item>
+    </style>
+
+    <!-- Chip style. -->
+    <style name="Widget.App.Chip" parent="Widget.Material3.MaterialTimePicker.Display">
+        <item name="android:textColor">@color/popup_display_text_color</item>
     </style>
 </resources>

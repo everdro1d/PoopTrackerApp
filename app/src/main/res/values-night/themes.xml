@@ -5,6 +5,10 @@
         <item name="colorPrimary">@color/header_accent_dark</item>
         <item name="colorPrimaryVariant">@color/background_dark</item>
         <item name="colorOnPrimary">@color/text_dark</item>
+        <item name="colorOnSurface">#834FE1</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+        <item name="colorSurface">@color/quantum_grey900</item>
+        <item name="imageButtonStyle">@style/Widget.AppCompat.ImageButton</item>
 
         <!-- Option menu tints. (does not change) -->
         <item name="colorAccent">@color/colorAccent</item>
@@ -27,5 +31,10 @@
     <!-- Option menu tints. (does not change) -->
     <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">?attr/colorPrimary</item>
+    </style>
+
+    <!-- Chip style. -->
+    <style name="Widget.App.Chip" parent="Widget.Material3.MaterialTimePicker.Display">
+        <item name="android:textColor">@color/popup_display_text_color</item>
     </style>
 </resources>

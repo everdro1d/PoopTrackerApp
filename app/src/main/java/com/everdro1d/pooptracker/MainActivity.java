@@ -2,6 +2,8 @@ package com.everdro1d.pooptracker;
 
 import static android.text.format.DateFormat.is24HourFormat;
 
+import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK;
+
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
@@ -10,10 +12,8 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int previousDay, previousWeek;
 
-    private int hour, minute;
+    public int hour, minute;
 
     private String menuItem2Time = "";
     MediaPlayer mp;
@@ -432,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // sets the time for the notification
-    private void handleNotification(int hour, int minute) {
+    public void handleNotification(int hour, int minute) {
         // Create an Intent and set the class that will execute when the Alarm triggers.
         Intent alarmIntent = new Intent(this, AlarmReceiver.class);
 
@@ -446,10 +446,11 @@ public class MainActivity extends AppCompatActivity {
         // Set the alarm's trigger time
         long triggerTime = calendar.getTimeInMillis();
 
-        // Set the alarm to repeat every day
+        // Set the alarm
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
+        //INEXACT REPEAT
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 24*3600*1000, pendingIntent);
 
         // Log the alarm time
         Log.v("Alarm", "Alarm set for " + hour + ":" + minute);
@@ -477,6 +478,7 @@ public class MainActivity extends AppCompatActivity {
         //creates the time picker
         MaterialTimePicker mTimePicker = new MaterialTimePicker.Builder()
                 .setTimeFormat(clockFormat)
+                .setInputMode(INPUT_MODE_CLOCK)
                 .setHour(hour)
                 .setMinute(minute)
                 .setTitleText("Select notification time")
