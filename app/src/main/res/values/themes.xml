@@ -7,8 +7,7 @@
         <item name="colorOnPrimary">@color/text_light</item>
         <item name="colorOnSurface">?attr/colorPrimary</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
-        <item name="colorSurface">#181B20</item>
-        <item name="imageButtonStyle">@style/Widget.AppCompat.ImageButton</item>
+        <item name="colorSurface">@color/popupBackground</item>
 
         <!-- Option menu tints. (does not change) -->
         <item name="colorAccent">@color/colorAccent</item>
@@ -35,4 +34,62 @@
     <style name="Widget.App.Chip" parent="Widget.Material3.MaterialTimePicker.Display">
         <item name="android:textColor">@color/popup_display_text_color</item>
     </style>
+
+    <!-- EditText style. (when you select the textbox in the reminder selector) -->
+    <style name="Widget.AppCompat.EditText" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:textColor">#B15877</item>
+    </style>
+
+
+    <!-- Alert Dialog Style. -->
+    <style name="AlertDialogStyle">
+        <item name="shapeAppearanceMediumComponent">@style/RoundShapeAppearance</item>
+
+        <item name="materialAlertDialogTitleTextStyle">@style/TitleAppearance</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/BodyAppearance</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Alert.Button.Negative</item>
+        <item name="android:windowTitleStyle">@style/TitleAppearance</item>
+    </style>
+
+    <style name="RoundShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="TitleAppearance" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textAppearance">@style/TitleText</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyAppearance" parent="@style/MaterialAlertDialog.Material3.Body.Text">
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textAppearance">@style/BodyText</item>
+    </style>
+
+    <style name="BodyText">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="rippleColor">@color/colorAccent</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">left</item>
+    </style>
+
 </resources>

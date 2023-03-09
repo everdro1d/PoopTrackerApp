@@ -1,7 +1,6 @@
 package com.everdro1d.pooptracker;
 
 import static android.text.format.DateFormat.is24HourFormat;
-
 import static com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_CLOCK;
 
 import android.annotation.SuppressLint;
@@ -9,11 +8,14 @@ import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,11 +25,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public int hour, minute;
 
     private String menuItem2Time = "";
+
     MediaPlayer mp;
 
     @Override
@@ -89,17 +97,17 @@ public class MainActivity extends AppCompatActivity {
 
             Log.v("onSaveInstanceState ", "SAVING STATE");
             Log.v("Saving State", savedInstanceState.toString());
+
         } else {
             Log.v("onCreate ", "EMPTY STATE");
         }
-
         // increment seconds & create notification channel
         runTimer();
         createNotificationChannel();
     }
 
-    // Creates the Notification Channel
 
+    // Creates the Notification Channel
     private void createNotificationChannel() {
         // Create the NotificationChannel
         CharSequence name = "Have You Pooped?";
@@ -144,16 +152,18 @@ public class MainActivity extends AppCompatActivity {
                     mp.start();
                 } catch(Exception e) { e.printStackTrace(); }
                 return true;
-
             // Set a reminder
             case R.id.menuItem2:
                 popupTimePicker();
                 return true;
+            case R.id.menuItem3:
+                switchTheme();
             // add more menu items here
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     // Save the state of the stopwatch if it's about to be destroyed.
     @Override
@@ -217,6 +227,10 @@ public class MainActivity extends AppCompatActivity {
 
         minute = sharedPref.getInt("minute", minute);
 
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("isDark", isNightModeActive(this));
+        editor.apply();
+
         // Log
         //Log.v("onStart ", "SET SHAREDPREFS");
 
@@ -255,9 +269,9 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt("totalToday", totalToday);
         editor.putInt("previousDay", previousDay);
         editor.putInt("previousWeek", previousWeek);
+        editor.putString("menuItem2Time", menuItem2Time);
         editor.putInt("hour", hour);
         editor.putInt("minute", minute);
-        editor.putString("menuItem2Time", menuItem2Time);
 
         // commit edits
         editor.commit();
@@ -434,46 +448,70 @@ public class MainActivity extends AppCompatActivity {
     // sets the time for the notification
     public void handleNotification(int hour, int minute) {
         // Create an Intent and set the class that will execute when the Alarm triggers.
-        Intent alarmIntent = new Intent(this, AlarmReceiver.class);
+        Intent alarmIntent = new Intent(this, AlarmReceiverNotification.class);
 
         // Create a Calendar object that will contain the date and time of the alarm
         Calendar calendar = Calendar.getInstance();
 
         // Set the alarm's trigger hour and minute
+        calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
-
-        // Set the alarm's trigger time
-        long triggerTime = calendar.getTimeInMillis();
 
         // Set the alarm
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        //INEXACT REPEAT
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 24*3600*1000, pendingIntent);
+        //INEXACT REPEAT TODO: change to EXACT REPEAT & set up a broadcast receiver to trigger it again in 24 hours
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*3600*1000, pendingIntent);
 
         // Log the alarm time
         Log.v("Alarm", "Alarm set for " + hour + ":" + minute);
-        Log.v("Alarm", "Alarm set for " + (triggerTime - System.currentTimeMillis()) + " milliseconds from now");
+        Log.v("Alarm", "Alarm set for " + calendar.getTimeInMillis() + " milliseconds from now");
+    }
+
+    //checks if notifications are enabled
+    public boolean areNotificationsEnabled() {
+        NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (!manager.areNotificationsEnabled()) {
+            return false;
+        }
+        List<NotificationChannel> channels = manager.getNotificationChannels();
+        for (NotificationChannel channel : channels) {
+            if (channel.getImportance() == NotificationManager.IMPORTANCE_NONE) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //creates the popup dialog to enable notifications
+    private void notificationPopupDialog() {
+        new MaterialAlertDialogBuilder(MainActivity.this, R.style.AlertDialogStyle)
+                .setTitle("Enable Notifications?")
+                .setMessage("Notifications are disabled. Enable notifications to receive daily reminders.")
+                .setPositiveButton("ENABLE", (dialogInterface, i) -> {
+                    Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                            .putExtra(Settings.EXTRA_APP_PACKAGE, this.getPackageName());
+                    startActivity(intent);
+                })
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss())
+                .show();
     }
 
     //creates the TimePicker popup
     public void popupTimePicker() {
-
-        //TODO: add a check to see if notifications are enabled
-        //boolean notifications;
-        //if (!notifications) {
-        //    Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-        //            .putExtra(Settings.EXTRA_APP_PACKAGE, this.getPackageName());
-        //    startActivity(intent);
-        //}
-
+        boolean notifications = areNotificationsEnabled();
+        if (!notifications) {
+            // if notifications are disabled, show a popup dialog to enable them and return
+            notificationPopupDialog();
+            return;
+        }
 
         //gets the system clock format
         boolean isSystem24Hour = is24HourFormat(this);
         int clockFormat = 1;
             //sets the clock format (defaults to 24 hour)
-            if (!isSystem24Hour) { clockFormat = TimeFormat.CLOCK_12H; }
+            if (!isSystem24Hour) {clockFormat = TimeFormat.CLOCK_12H;}
 
         //creates the time picker
         MaterialTimePicker mTimePicker = new MaterialTimePicker.Builder()
@@ -492,13 +530,67 @@ public class MainActivity extends AppCompatActivity {
             //gets the time from the time picker
             hour = mTimePicker.getHour();
             minute = mTimePicker.getMinute();
-            //formats the time and assigns it to the menu string
-            menuItem2Time = String.format(Locale.getDefault(), "%02d:%02d",hour, minute);
             //refreshes the menu
             invalidateOptionsMenu();
             //sets the alarm
             handleNotification(hour, minute);
+            timeFormat(hour, minute);
         });
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void timeFormat(int hour, int minute) {
+        //gets the system clock format
+        boolean isSystem24Hour = is24HourFormat(this);
+        //formats the time
+        try {
+            String _24HourTime = hour + ":" + minute;
+            SimpleDateFormat _24HourSDF = new SimpleDateFormat("kk:mm");
+            SimpleDateFormat _12HourSDF = new SimpleDateFormat("h:mm a");
+            Date _24HourDt = _24HourSDF.parse(_24HourTime);
+            if (!isSystem24Hour)
+            {
+                assert _24HourDt != null;
+                menuItem2Time = _12HourSDF.format(_24HourDt);}
+            else { menuItem2Time = String.format(Locale.getDefault(),"%02d:%02d", hour, minute);}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Switch between light and dark theme
+    private void switchTheme() {
+        SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        if (sharedPref.getBoolean("isDark", false)) {
+            editor.putBoolean("isDark", false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            editor.putBoolean("isDark", true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        editor.apply();
+        recreate();
+    }
+    public static boolean isNightModeActive(Context context) {
+        int defaultNightMode = AppCompatDelegate.getDefaultNightMode();
+        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            return true;
+        }
+        if (defaultNightMode == AppCompatDelegate.MODE_NIGHT_NO) {
+            return false;
+        }
+
+        int currentNightMode = context.getResources().getConfiguration().uiMode
+                & Configuration.UI_MODE_NIGHT_MASK;
+        switch (currentNightMode) {
+            case Configuration.UI_MODE_NIGHT_NO:
+            case Configuration.UI_MODE_NIGHT_UNDEFINED:
+                return false;
+            case Configuration.UI_MODE_NIGHT_YES:
+                return true;
+        }
+        return false;
     }
 }
 

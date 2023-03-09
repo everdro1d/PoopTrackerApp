@@ -5,6 +5,7 @@
     <!-- Option menu. -->
     <string name="menuItem1">Clear All Data</string>
     <string name="menuItem2">Set Reminder Time</string>
+    <string name="menuItem3">Switch Theme</string>
 
     <!-- Title at top of screen. -->
     <string name="mainTitleText">Have you pooped today?</string>

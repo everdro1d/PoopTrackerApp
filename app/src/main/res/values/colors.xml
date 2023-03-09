@@ -7,6 +7,7 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="popupBackground">#181B20</color>
 
 
     <!-- Dark Mode Colors. -->
@@ -14,6 +15,7 @@
     <color name="text_dark">#E6E6E6</color>
     <color name="outline_dark">#1D005F</color>
     <color name="header_accent_dark">@color/purple_500</color>
+    <color name="light_purple_text_dark">#834FE1</color>
         <!-- Tints. -->
         <color name="colorAccent">#32000000</color>
         <color name="img_tint_dark">#27000000</color>
@@ -24,5 +26,6 @@
     <color name="text_light">#C0000000</color>
     <color name="outline_light">#EE80A6</color>
     <color name="header_accent_light">#FEADCE</color>
+    <color name="dark_pink_edit_text">#B15877</color>
 
 </resources>
