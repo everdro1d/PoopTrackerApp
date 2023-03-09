@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     // Global Variables
@@ -458,15 +459,23 @@ public class MainActivity extends AppCompatActivity {
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
 
+        // If the alarm has already passed today, set it for the next day.
+        long triggerTime = calendar.getTimeInMillis();
+        if (triggerTime < System.currentTimeMillis()) {
+            triggerTime += 24*3600*1000;
+        }
+
         // Set the alarm
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        //INEXACT REPEAT TODO: change to EXACT REPEAT & set up a broadcast receiver to trigger it again in 24 hours
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24*3600*1000, pendingIntent);
+        //INEXACT REPEAT
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 24*3600*1000, pendingIntent);
 
         // Log the alarm time
         Log.v("Alarm", "Alarm set for " + hour + ":" + minute);
-        Log.v("Alarm", "Alarm set for " + calendar.getTimeInMillis() + " milliseconds from now");
+        long logHour = TimeUnit.MILLISECONDS.toHours((triggerTime - System.currentTimeMillis()));
+        long logMinute = TimeUnit.MILLISECONDS.toMinutes((triggerTime - System.currentTimeMillis())) - TimeUnit.HOURS.toMinutes(logHour);
+        Log.v("Alarm", "Alarm set for " + logHour + " hours from now, and " + logMinute + " minutes from now.");
     }
 
     //checks if notifications are enabled

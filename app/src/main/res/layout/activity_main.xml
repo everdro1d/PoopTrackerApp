@@ -226,12 +226,13 @@
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="85dp"
         android:layout_gravity="bottom"
 
         android:onClick="onClickAdd"
         android:text="@string/buttonText1"
         android:textSize="22sp"
+        android:translationY="15dp"
         app:strokeColor="?attr/colorOutline"
         app:strokeWidth="2dp"
         tools:ignore="PrivateResource,VisualLintButtonSize">
