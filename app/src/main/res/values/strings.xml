@@ -25,7 +25,7 @@
 
 
     <!-- Notifications. -->
-    <string name="notifTitle">Have You Pooped Today?</string>
-    <string name="notifContent">Your toilet misses you…</string>
+    <string name="notificationTitle">Have You Pooped Today?</string>
+    <string name="notificationContent">Your toilet misses you…</string>
 
 </resources>

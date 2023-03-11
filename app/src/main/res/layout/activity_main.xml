@@ -210,7 +210,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/textTT"
+            android:id="@+id/textTTD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -229,7 +229,7 @@
         android:layout_height="85dp"
         android:layout_gravity="bottom"
 
-        android:onClick="onClickAdd"
+        android:onClick="onClickStartStopwatch"
         android:text="@string/buttonText1"
         android:textSize="22sp"
         android:translationY="15dp"

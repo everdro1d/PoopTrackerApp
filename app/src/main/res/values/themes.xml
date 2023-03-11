@@ -35,9 +35,9 @@
         <item name="android:textColor">@color/popup_display_text_color</item>
     </style>
 
-    <!-- EditText style. (when you select the textbox in the reminder selector) -->
+    <!-- EditText style. (when you select the text box in the reminder selector) -->
     <style name="Widget.AppCompat.EditText" parent="Base.Widget.AppCompat.EditText">
-        <item name="android:textColor">#B15877</item>
+        <item name="android:textColor">@color/dark_pink_edit_text</item>
     </style>
 
 
