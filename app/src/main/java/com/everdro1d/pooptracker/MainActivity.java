@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             triggerTime = savedInstanceState.getLong("triggerTime");
         }
 
+        checkDate();
         incrementStopwatchSeconds();
         createNotificationChannel();
     }
@@ -141,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
+        checkDate();
 
         // Get the shared preferences
         SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
@@ -243,6 +246,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run()
             {
+                if (triggerTime - System.currentTimeMillis() <= -1) {
+                    scheduleNotification(hour, minute);
+                }
                 setTimeTextView(timeView, checkTime());
                 handler.postDelayed(this, 1000);
             }
@@ -263,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
             
             totalToday = 0;
             previousDay = currentDay;
-            
+            scheduleNotification(hour, minute);
         } else if (previousWeek != currentWeek) {
             totalThisWeek = 0;
             previousWeek = currentWeek;
@@ -285,10 +291,8 @@ public class MainActivity extends AppCompatActivity {
         int minutes = (seconds % 3600) / 60;
         int secs = seconds % 60;
 
-        // Format the seconds into hours, minutes, and seconds.
         String time = String.format(Locale.getDefault(),"%02d:%02d:%02d", hours, minutes, secs);
 
-        // Set the text view text.
         timeView.setText(time);
     }
 
@@ -307,22 +311,15 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("ApplySharedPref")
     public void clearAllStats() {
-        // Create SharedPreferences.
         SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
-        // Create Editor
         SharedPreferences.Editor editor = sharedPref.edit();
-        // sets all values to zero
         editor.putLong("startTime", 0);
         editor.putInt("shortestTime", 0);
         editor.putInt("longestTime", 0);
         editor.putInt("totalAllTime", 0);
         editor.putInt("totalThisWeek", 0);
         editor.putInt("totalToday", 0);
-
-        //Commit edits
         editor.commit();
-
-        // Reset all textViews
         onStart();
 
     }
@@ -340,24 +337,29 @@ public class MainActivity extends AppCompatActivity {
         }
         triggerTime = calendar.getTimeInMillis();
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,
+                alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, triggerTime, 24*3600*1000, pendingIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
 
-        
+
         Log.v("Alarm", "Alarm set for " + hour + ":" + minute);
         logTimeUntilNotification();
     }
 
     private void logTimeUntilNotification() {
         long logHour = TimeUnit.MILLISECONDS.toHours((triggerTime - System.currentTimeMillis()));
-        long logMinute = TimeUnit.MILLISECONDS.toMinutes((triggerTime - System.currentTimeMillis())) - TimeUnit.HOURS.toMinutes(logHour);
-        long logSecond = TimeUnit.MILLISECONDS.toSeconds((triggerTime - System.currentTimeMillis())) - TimeUnit.MINUTES.toSeconds(logMinute) - TimeUnit.HOURS.toSeconds(logHour);
-        Log.v("Alarm", "Alarm set for " + logHour + " hours, " + logMinute + " minutes, and " + logSecond + " seconds from now.");
+        long logMinute = TimeUnit.MILLISECONDS.toMinutes((triggerTime - System.currentTimeMillis()))
+                - TimeUnit.HOURS.toMinutes(logHour);
+        long logSecond = TimeUnit.MILLISECONDS.toSeconds((triggerTime - System.currentTimeMillis()))
+                - TimeUnit.MINUTES.toSeconds(logMinute) - TimeUnit.HOURS.toSeconds(logHour);
+        Log.v("Alarm", "Alarm set for " + logHour + " hours, " + logMinute +
+                " minutes, and " + logSecond + " seconds from now.");
     }
 
     public boolean areNotificationsEnabled() {
-        NotificationManager manager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager manager =
+                (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         if (!manager.areNotificationsEnabled()) {
             return false;
         }
@@ -379,7 +381,8 @@ public class MainActivity extends AppCompatActivity {
                             .putExtra(Settings.EXTRA_APP_PACKAGE, this.getPackageName());
                     startActivity(intent);
                 })
-                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(android.R.string.cancel,
+                        (dialogInterface, i) -> dialogInterface.dismiss())
                 .show();
     }
 
