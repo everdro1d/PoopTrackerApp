@@ -37,6 +37,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+//TODO Create ICON in photoshop
+// Create signed apk        https://www.youtube.com/watch?v=ieWtCaWkzYQ | https://developer.android.com/studio/publish/preparing
+// publish to play store    https://www.youtube.com/watch?v=5GHT4QtotE4
+
 public class MainActivity extends AppCompatActivity {
     private long startTime = 0, triggerTime = 0;
     private int shortestTime = 0, longestTime = 0, totalAllTime = 0,
