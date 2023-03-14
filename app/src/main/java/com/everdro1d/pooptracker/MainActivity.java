@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,7 +36,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     private long startTime = 0, triggerTime = 0;
@@ -142,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        // Get the shared preferences
         SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
         startTime = sharedPref.getLong("startTime", startTime);
         shortestTime = sharedPref.getInt("shortestTime", shortestTime);
@@ -207,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
         setLongestShortestTime();
         startTime = System.currentTimeMillis();
         addTotal();
-        logTimeUntilNotification();
 
         mp = MediaPlayer.create(this, R.raw.fart);
         try {
@@ -270,9 +266,6 @@ public class MainActivity extends AppCompatActivity {
             totalThisWeek = 0;
             previousWeek = currentWeek;
         }
-
-        // If you open the app exactly one month after last opening it,
-        // the counters will think no time has passed.
     }
     
     public int checkTime() {
@@ -337,20 +330,6 @@ public class MainActivity extends AppCompatActivity {
                 alarmIntent, PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent);
-
-
-        Log.v("Alarm", "Alarm set for " + hour + ":" + minute);
-        logTimeUntilNotification();
-    }
-
-    private void logTimeUntilNotification() {
-        long logHour = TimeUnit.MILLISECONDS.toHours((triggerTime - System.currentTimeMillis()));
-        long logMinute = TimeUnit.MILLISECONDS.toMinutes((triggerTime - System.currentTimeMillis()))
-                - TimeUnit.HOURS.toMinutes(logHour);
-        long logSecond = TimeUnit.MILLISECONDS.toSeconds((triggerTime - System.currentTimeMillis()))
-                - TimeUnit.MINUTES.toSeconds(logMinute) - TimeUnit.HOURS.toSeconds(logHour);
-        Log.v("Alarm", "Alarm set for " + logHour + " hours, " + logMinute +
-                " minutes, and " + logSecond + " seconds from now.");
     }
 
     public boolean areNotificationsEnabled() {
@@ -434,7 +413,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Switch between light and dark theme
     private void switchTheme() {
         SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
         SharedPreferences.Editor editor = sharedPref.edit();
