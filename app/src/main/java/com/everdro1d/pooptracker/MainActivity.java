@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
             triggerTime = savedInstanceState.getLong("triggerTime");
         }
 
-        checkDate();
         incrementStopwatchSeconds();
         createNotificationChannel();
     }
@@ -142,8 +141,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        checkDate();
 
         // Get the shared preferences
         SharedPreferences sharedPref = getSharedPreferences("varPrefs", 0);
@@ -269,7 +266,6 @@ public class MainActivity extends AppCompatActivity {
             
             totalToday = 0;
             previousDay = currentDay;
-            scheduleNotification(hour, minute);
         } else if (previousWeek != currentWeek) {
             totalThisWeek = 0;
             previousWeek = currentWeek;

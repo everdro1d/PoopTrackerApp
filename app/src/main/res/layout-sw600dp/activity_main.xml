@@ -20,7 +20,7 @@
         android:text="@string/mainTitleText"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="34sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,12 +32,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="162dp"
+        android:layout_height="229dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textShortestInterval"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,11 +50,11 @@
         android:layout_height="wrap_content"
 
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="-48dp"
         android:text="@string/timeTextSub2"
         android:textAlignment="textStart"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toStartOf="@+id/textLongestInterval"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -71,7 +70,7 @@
         android:text="@string/timeTextSub3"
         android:textAlignment="textEnd"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/textShortestInterval"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textShortestInterval"
@@ -87,7 +86,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="@+id/textShortestInterval"
         app:layout_constraintStart_toStartOf="@+id/textShortestInterval"
         app:layout_constraintTop_toBottomOf="@+id/textShortestInterval">
@@ -101,7 +100,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="@+id/textLongestInterval"
         app:layout_constraintStart_toStartOf="@id/textLongestInterval"
         app:layout_constraintTop_toBottomOf="@+id/textLongestInterval">
@@ -121,7 +120,7 @@
         android:text="@string/timeTextMain1"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="34sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/textTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -162,7 +161,7 @@
         android:text="@string/statText1"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/textTotalThisWeek"
         app:layout_constraintEnd_toStartOf="@id/textTTW"
         app:layout_constraintStart_toStartOf="parent"
@@ -179,7 +178,7 @@
         android:text="@string/statText2"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="32sp"
         app:layout_constraintEnd_toStartOf="@+id/textTotalToday"
         app:layout_constraintStart_toEndOf="@+id/textTotalAllTime"
         app:layout_constraintTop_toBottomOf="@+id/textTime">
@@ -195,7 +194,7 @@
         android:text="@string/statText3"
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@+id/textTotalThisWeek"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/textTTW"
@@ -211,7 +210,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/textTTW"
         app:layout_constraintEnd_toStartOf="@+id/textTTW"
         app:layout_constraintStart_toStartOf="@+id/textTotalAllTime"
@@ -226,7 +225,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@+id/textTTD"
         app:layout_constraintStart_toEndOf="@+id/textTAT"
         app:layout_constraintTop_toBottomOf="@+id/textTotalThisWeek">
@@ -240,7 +239,7 @@
 
         android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:textSize="25sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/textTTW"
         app:layout_constraintEnd_toEndOf="@+id/textTotalToday"
         app:layout_constraintStart_toEndOf="@id/textTTW"
@@ -260,7 +259,7 @@
         android:layout_marginBottom="32dp"
         android:onClick="onClickStartStopwatch"
         android:text="@string/buttonText1"
-        android:textSize="24sp"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
