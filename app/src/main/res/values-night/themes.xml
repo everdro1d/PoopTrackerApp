@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.PoopTracker" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/text_dark</item>
         <item name="colorOnSurface">@color/light_purple_text_dark</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
-        <item name="colorSurface">@color/popupBackground</item>
+        <item name="colorSurface">@color/popupBackground_dark</item>
 
         <!-- Option menu tints. (does not change) -->
         <item name="colorAccent">@color/colorAccent</item>
@@ -42,6 +42,19 @@
         <item name="android:textColor">@color/background_dark</item>
     </style>
 
+    <!-- Subtitle style on keyboard widget. -->
+    <style name="Widget.MaterialComponents.TimePicker.Display.HelperText" parent="Widget.MaterialComponents.TextView"
+        tools:override="true">
+        <item name="android:textColor">@color/light_purple_text_dark</item>
+        <item name="android:textAppearance">@style/BodyText</item>
+    </style>
+
+    <!-- Text within the clock pointer.  -->
+    <style name="Widget.MaterialComponents.TimePicker.Clock" parent="" tools:override="true">
+        <item name="clockHandColor">@color/background_dark</item>
+        <item name="clockNumberTextColor">@color/subtitle_dark</item>
+    </style>
+
 
     <!-- Alert Dialog Style. -->
     <style name="AlertDialogStyle">
@@ -61,7 +74,7 @@
     </style>
 
     <style name="TitleAppearance" parent="@style/MaterialAlertDialog.MaterialComponents.Title.Text">
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/light_purple_text_dark</item>
         <item name="android:textAppearance">@style/TitleText</item>
     </style>
 
@@ -71,7 +84,7 @@
     </style>
 
     <style name="BodyAppearance" parent="@style/MaterialAlertDialog.Material3.Body.Text">
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/light_purple_text_dark</item>
         <item name="android:textAppearance">@style/BodyText</item>
     </style>
 
@@ -82,14 +95,14 @@
     <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">?attr/colorPrimary</item>
         <item name="rippleColor">@color/colorAccent</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/light_purple_text_dark</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="Alert.Button.Negative" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="backgroundTint">@android:color/transparent</item>
         <item name="rippleColor">@color/colorAccent</item>
-        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textColor">@color/light_purple_text_dark</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">left</item>
     </style>

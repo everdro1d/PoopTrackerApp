@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.PoopTracker" parent="Theme.MaterialComponents.Light">
         <!-- Primary brand color. -->
@@ -7,7 +7,7 @@
         <item name="colorOnPrimary">@color/text_light</item>
         <item name="colorOnSurface">?attr/colorPrimary</item>
         <item name="chipStyle">@style/Widget.App.Chip</item>
-        <item name="colorSurface">@color/popupBackground</item>
+        <item name="colorSurface">@color/popupBackground_light</item>
 
         <!-- Option menu tints. (does not change) -->
         <item name="colorAccent">@color/colorAccent</item>
@@ -38,6 +38,13 @@
     <!-- EditText style. (when you select the text box in the reminder selector) -->
     <style name="Widget.AppCompat.EditText" parent="Base.Widget.AppCompat.EditText">
         <item name="android:textColor">@color/dark_pink_edit_text</item>
+    </style>
+
+    <!-- Subtitle style on keyboard widget -->
+    <style name="Widget.MaterialComponents.TimePicker.Display.HelperText" parent="Widget.MaterialComponents.TextView"
+        tools:override="true">
+        <item name="android:textColor">@color/subtitle_light</item>
+        <item name="android:textAppearance">@style/BodyText</item>
     </style>
 
 

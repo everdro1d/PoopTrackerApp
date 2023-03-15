@@ -37,7 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-//TODO Create ICON in photoshop
+//TODO
 // Create signed apk        https://www.youtube.com/watch?v=ieWtCaWkzYQ | https://developer.android.com/studio/publish/preparing
 // publish to play store    https://www.youtube.com/watch?v=5GHT4QtotE4
 

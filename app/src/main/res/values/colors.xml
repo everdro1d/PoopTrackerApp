@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Basic Colors. -->
-    <color name="purple_500">#FF673AB7</color>
-    <color name="popupBackground">#181B20</color>
-
 
     <!-- Dark Mode Colors. -->
-    <color name="background_dark">#4A148C</color>
+    <color name="background_dark">#7a4b9e</color>
     <color name="text_dark">#E6E6E6</color>
-    <color name="outline_dark">#1D005F</color>
-    <color name="header_accent_dark">@color/purple_500</color>
-    <color name="light_purple_text_dark">#834FE1</color>
+    <color name="outline_dark">#32286a</color>
+    <color name="header_accent_dark">#663399</color>
+    <color name="light_purple_text_dark">#946DB7</color>
+    <color name="popupBackground_dark">#222222</color>
+    <color name="subtitle_dark">#b899c8</color>
         <!-- Tints. -->
         <color name="colorAccent">#32000000</color>
         <color name="img_tint_dark">#27000000</color>
 
 
     <!-- Light Mode Colors. -->
-    <color name="background_light">@color/ic_pooper_light_background</color>
-    <color name="text_light">#C0000000</color>
+    <color name="background_light">#FD95C1</color>
+    <color name="text_light">#3f2530</color>
     <color name="outline_light">#EE80A6</color>
     <color name="header_accent_light">#FEADCE</color>
-    <color name="dark_pink_edit_text">#B15877</color>
+    <color name="dark_pink_edit_text">#7b5464</color>
+    <color name="popupBackground_light">#343434</color>
+    <color name="subtitle_light">#BA7F97</color>
 
 </resources>
