@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="@id/textLong"
         app:layout_constraintStart_toStartOf="@id/textShort"
         app:layout_constraintTop_toBottomOf="@+id/textTitle"
-        app:srcCompat="@mipmap/ic_pooper_transparent_foreground"
+        app:srcCompat="@mipmap/ic_poopoji_transparent_foreground"
         tools:ignore="ContentDescription" />
 
     <TextView
