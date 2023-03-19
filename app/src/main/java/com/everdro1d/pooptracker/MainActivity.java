@@ -37,10 +37,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-//TODO
-// Create signed apk        https://www.youtube.com/watch?v=ieWtCaWkzYQ | https://developer.android.com/studio/publish/preparing
-// publish to play store    https://www.youtube.com/watch?v=5GHT4QtotE4
-
 public class MainActivity extends AppCompatActivity {
     private long startTime = 0, triggerTime = 0;
     private int shortestTime = 0, longestTime = 0, totalAllTime = 0,
@@ -162,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("isDark", isNightModeActive(this));
         editor.apply();
 
+        checkDate();
+
         updateTextView(R.id.textTAT, totalAllTime);
 
         updateTextView(R.id.textTTW, totalThisWeek);
@@ -259,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
         int currentWeek = calendar.get(Calendar.WEEK_OF_MONTH);
 
         if (previousDay != currentDay) {
-            if ((previousDay == 7) || ((previousDay - 1) < currentDay)) {
+            if ((previousDay == 7) || ((previousDay - 1) > currentDay)) {
                 totalThisWeek = 0;
                 previousWeek = currentWeek;
             }
@@ -269,6 +267,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (previousWeek != currentWeek) {
             totalThisWeek = 0;
             previousWeek = currentWeek;
+            totalToday = 0;
         }
     }
     
