@@ -52,7 +52,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="-48dp"
         android:text="@string/timeTextSub2"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:textSize="34sp"
         app:layout_constraintEnd_toStartOf="@+id/textLongestInterval"
@@ -68,7 +68,7 @@
 
         android:layout_marginEnd="16dp"
         android:text="@string/timeTextSub3"
-        android:textAlignment="textEnd"
+        android:textAlignment="center"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="@+id/textShortestInterval"
